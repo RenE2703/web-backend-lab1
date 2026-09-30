@@ -2,6 +2,12 @@
 CREATE DATABASE IF NOT EXISTS ecommerce_db;
 USE ecommerce_db;
 
+-- Reset tables to allow re-running the script smoothly without duplicate key errors
+DROP TABLE IF EXISTS order_items;
+DROP TABLE IF EXISTS orders;
+DROP TABLE IF EXISTS products;
+DROP TABLE IF EXISTS users;
+
 -- 2. Create the users table (DDL)
 CREATE TABLE IF NOT EXISTS users (
   id INT AUTO_INCREMENT PRIMARY KEY,
@@ -25,12 +31,14 @@ CREATE TABLE IF NOT EXISTS products (
 -- 4. Insert sample data (DML - INSERT)
 INSERT INTO users (full_name, email, password_hash, role) VALUES
 ('Nguyen Van Admin', 'admin@gmail.com', 'hashed_pwd_123', 'admin'),
-('Tran Thi User', 'user@gmail.com', 'hashed_pwd_456', 'user');
+('Tran Thi User', 'user@gmail.com', 'hashed_pwd_456', 'user'),
+('Le Van Customer', 'customer@gmail.com', 'hashed_pwd_789', 'user');
 
 INSERT INTO products (title, price, stock, category) VALUES
 ('Laptop Dell XPS 15', 35000000.00, 10, 'Electronics'),
 ('Keychron K2', 2200000.00, 25, 'Accessories'),
-('Logitech MX Master 3S', 2500000.00, 15, 'Accessories');
+('Logitech MX Master 3S', 2500000.00, 15, 'Accessories'),
+('USB-C Hub', 850000.00, 20, 'Accessories');
 
 -- Extended requirement
 -- 1. Extend the Database Structure (DDL)
@@ -47,7 +55,7 @@ CREATE TABLE IF NOT EXISTS order_items (
   id INT AUTO_INCREMENT PRIMARY KEY,
   order_id INT NOT NULL,
   product_id INT NOT NULL,
-  quantity INT NOT NULL,
+  quantity INT NOT NULL CHECK (quantity > 0),
   price DECIMAL(10, 2) NOT NULL,
   FOREIGN KEY (order_id) REFERENCES orders(id),
   FOREIGN KEY (product_id) REFERENCES products(id)
@@ -58,7 +66,7 @@ CREATE TABLE IF NOT EXISTS order_items (
 INSERT INTO orders (user_id, total_amount, status) VALUES
 (1, 35000000.00, 'completed'),
 (2, 4700000.00, 'pending'),
-(2, 2200000.00, 'completed');
+(3, 2200000.00, 'completed');
 
 INSERT INTO order_items (order_id, product_id, quantity, price) VALUES
 (1, 1, 1, 35000000.00),
