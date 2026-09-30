@@ -1,10 +1,10 @@
 {
   "name": "lab1-backend",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Lab 1 in-class Express API",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "",
@@ -12,7 +12,6 @@
   "type": "commonjs",
   "dependencies": {
     "dotenv": "^18.0.4",
-    "express": "^5.2.1",
-    "pdfjs-dist": "^6.3.289"
+    "express": "^5.2.1"
   }
 }

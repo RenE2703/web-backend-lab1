@@ -1,58 +1,37 @@
-# Báo cáo Thực hành Lab 1
+# Lab 1 - In-class exercises
 
-## Thông tin sinh viên
-- Họ và tên: Đỗ Anh Tuấn
-- MSSV: 25560063
-- Lớp: BCU
-- Email: erenererophu@gmail.com
+**Sinh viên:** Đỗ Anh Tuấn
 
----
+**MSSV:** 25560063
 
-## 1. Môi trường phát triển
+**Lớp:** BCU
 
-Kết quả kiểm tra phiên bản:
-- **Node.js**: v22.21.0
-- **Git**: git version 2.51.1.windows.1
-- **VS Code**: 1.138.0
+Phạm vi: Section 4 của `Lab1.pdf`, gồm Exercise 1-3 và các yêu cầu mở rộng. Không bao gồm Section 5 (homework).
 
-*(Chèn ảnh chụp màn hình terminal khi chạy lệnh kiểm tra version)*
+## Exercise 1 - Node.js backend
 
----
+Mã nguồn ở [`lab1-backend/`](lab1-backend/). Dự án dùng Express và dotenv, mặc định chạy cổng 5000.
 
-## 2. Source Code Management
+| GET endpoint | Kết quả |
+| --- | --- |
+| `/` | Thông báo chào mừng, trạng thái và thời gian |
+| `/api/health` | Trạng thái và thời gian hoạt động của server |
+| `/api/greeting` | Thông tin sinh viên dưới dạng JSON |
 
-Cấu hình Git:
-- Tên: Đỗ Anh Tuấn
-- Email: erenererophu@gmail.com
+## Exercise 2 - MySQL
 
-*(Chèn ảnh chụp màn hình chạy lệnh git config)*
+Script [`exercise2_mysql.sql`](exercise2_mysql.sql) tạo `ecommerce_db`, các bảng `users`, `products`, `orders`, `order_items` và dữ liệu mẫu. Script có khóa ngoại, ràng buộc số lượng mua lớn hơn 0 và các câu truy vấn Q1-Q4: thêm đơn hàng, lọc sản phẩm theo giá, báo cáo JOIN, thống kê doanh thu và số đơn theo người dùng.
 
----
+Khi chạy trên cơ sở dữ liệu thử riêng, script tạo 3 người dùng và 3 đơn hàng. Truy vấn Q2 tìm được `USB-C Hub` (850.000 VND); tổng doanh thu đơn hoàn thành là 37.200.000 VND.
 
-## 3. Exercise 1: Build Your First Node.js Backend
+## Exercise 3 - MongoDB
 
-Đã thiết lập dự án `lab1-backend` và code file `server.js` bao gồm yêu cầu mở rộng API `/api/greeting`.
+Script [`exercise3_mongodb.js`](exercise3_mongodb.js) tạo `shop_db.orders`, thêm dữ liệu mẫu, tìm và cập nhật đơn hàng, rồi thực hiện Q1-Q4 về dữ liệu mảng và thống kê.
 
-*(Chèn ảnh chụp màn hình kết quả chạy terminal `node server.js` và trình duyệt)*
+Khi chạy trên cơ sở dữ liệu thử riêng, có 4 đơn hàng. Đơn `ORD-2026-002` có tổng giá trị 2.400.000 VND sau khi thêm sản phẩm; doanh thu đơn hoàn thành là 43.000.000 VND.
 
----
+## Chạy lại
 
-## 4. Exercise 2: MySQL
+Xem hướng dẫn trong [`README.md`](README.md). Script MySQL xóa và tạo lại database `ecommerce_db` mỗi khi chạy; script MongoDB thêm dữ liệu mẫu nên chạy một lần trên cơ sở dữ liệu mới.
 
-- Script tạo CSDL và DML đã được lưu tại `exercise2_mysql.sql`.
-- Script bao gồm cả yêu cầu cơ bản (tạo `ecommerce_db`, bảng `users`, `products`) và yêu cầu mở rộng (bảng `orders`, `order_items` cùng các câu lệnh Q1-Q4).
-
-*(Chèn ảnh chụp màn hình MySQL Workbench sau khi thực thi các lệnh)*
-
----
-
-## 5. Exercise 3: MongoDB
-
-- Script truy vấn NoSQL đã được lưu tại `exercise3_mongodb.js`.
-- Script thực hiện tạo collection `orders`, chèn dữ liệu và thực hiện các câu truy vấn Q1-Q4 cho yêu cầu mở rộng.
-
-*(Chèn ảnh chụp màn hình Mongo Compass hoặc MongoDB Shell)*
-
----
-
-**Link GitHub:** https://github.com/RenE2703/web-backend-lab1.git
+**GitHub:** https://github.com/RenE2703/web-backend-lab1
