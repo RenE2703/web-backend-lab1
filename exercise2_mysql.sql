@@ -29,12 +29,12 @@ CREATE TABLE IF NOT EXISTS products (
 );
 
 -- 4. Insert sample data (DML - INSERT)
-INSERT INTO users (full_name, email, password_hash, role) VALUES
+INSERT IGNORE INTO users (full_name, email, password_hash, role) VALUES
 ('Nguyen Van Admin', 'admin@gmail.com', 'hashed_pwd_123', 'admin'),
 ('Tran Thi User', 'user@gmail.com', 'hashed_pwd_456', 'user'),
 ('Le Van Customer', 'customer@gmail.com', 'hashed_pwd_789', 'user');
 
-INSERT INTO products (title, price, stock, category) VALUES
+INSERT IGNORE INTO products (title, price, stock, category) VALUES
 ('Laptop Dell XPS 15', 35000000.00, 10, 'Electronics'),
 ('Keychron K2', 2200000.00, 25, 'Accessories'),
 ('Logitech MX Master 3S', 2500000.00, 15, 'Accessories'),
@@ -63,12 +63,12 @@ CREATE TABLE IF NOT EXISTS order_items (
 
 -- 2. Data Manipulation & SQL Queries
 -- Q1 (Insert sample data)
-INSERT INTO orders (user_id, total_amount, status) VALUES
+INSERT IGNORE INTO orders (user_id, total_amount, status) VALUES
 (1, 35000000.00, 'completed'),
 (2, 4700000.00, 'pending'),
 (3, 2200000.00, 'completed');
 
-INSERT INTO order_items (order_id, product_id, quantity, price) VALUES
+INSERT IGNORE INTO order_items (order_id, product_id, quantity, price) VALUES
 (1, 1, 1, 35000000.00),
 (2, 2, 1, 2200000.00),
 (2, 3, 1, 2500000.00),
