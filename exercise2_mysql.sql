@@ -1,15 +1,10 @@
--- 1. Create the database
-CREATE DATABASE IF NOT EXISTS ecommerce_db;
+-- 1. Reset & Create database
+DROP DATABASE IF EXISTS ecommerce_db;
+CREATE DATABASE ecommerce_db;
 USE ecommerce_db;
 
--- Reset tables to allow re-running the script smoothly without duplicate key errors
-DROP TABLE IF EXISTS order_items;
-DROP TABLE IF EXISTS orders;
-DROP TABLE IF EXISTS products;
-DROP TABLE IF EXISTS users;
-
 -- 2. Create the users table (DDL)
-CREATE TABLE IF NOT EXISTS users (
+CREATE TABLE users (
   id INT AUTO_INCREMENT PRIMARY KEY,
   full_name VARCHAR(100) NOT NULL,
   email VARCHAR(100) NOT NULL UNIQUE,
@@ -19,7 +14,7 @@ CREATE TABLE IF NOT EXISTS users (
 );
 
 -- 3. Create the products table (DDL)
-CREATE TABLE IF NOT EXISTS products (
+CREATE TABLE products (
   id INT AUTO_INCREMENT PRIMARY KEY,
   title VARCHAR(150) NOT NULL,
   price DECIMAL(10, 2) NOT NULL,
@@ -29,12 +24,12 @@ CREATE TABLE IF NOT EXISTS products (
 );
 
 -- 4. Insert sample data (DML - INSERT)
-INSERT IGNORE INTO users (full_name, email, password_hash, role) VALUES
+INSERT INTO users (full_name, email, password_hash, role) VALUES
 ('Nguyen Van Admin', 'admin@gmail.com', 'hashed_pwd_123', 'admin'),
 ('Tran Thi User', 'user@gmail.com', 'hashed_pwd_456', 'user'),
 ('Le Van Customer', 'customer@gmail.com', 'hashed_pwd_789', 'user');
 
-INSERT IGNORE INTO products (title, price, stock, category) VALUES
+INSERT INTO products (title, price, stock, category) VALUES
 ('Laptop Dell XPS 15', 35000000.00, 10, 'Electronics'),
 ('Keychron K2', 2200000.00, 25, 'Accessories'),
 ('Logitech MX Master 3S', 2500000.00, 15, 'Accessories'),
@@ -42,7 +37,7 @@ INSERT IGNORE INTO products (title, price, stock, category) VALUES
 
 -- Extended requirement
 -- 1. Extend the Database Structure (DDL)
-CREATE TABLE IF NOT EXISTS orders (
+CREATE TABLE orders (
   id INT AUTO_INCREMENT PRIMARY KEY,
   user_id INT NOT NULL,
   total_amount DECIMAL(10, 2) NOT NULL,
@@ -51,7 +46,7 @@ CREATE TABLE IF NOT EXISTS orders (
   FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
-CREATE TABLE IF NOT EXISTS order_items (
+CREATE TABLE order_items (
   id INT AUTO_INCREMENT PRIMARY KEY,
   order_id INT NOT NULL,
   product_id INT NOT NULL,
@@ -63,12 +58,12 @@ CREATE TABLE IF NOT EXISTS order_items (
 
 -- 2. Data Manipulation & SQL Queries
 -- Q1 (Insert sample data)
-INSERT IGNORE INTO orders (user_id, total_amount, status) VALUES
+INSERT INTO orders (user_id, total_amount, status) VALUES
 (1, 35000000.00, 'completed'),
 (2, 4700000.00, 'pending'),
 (3, 2200000.00, 'completed');
 
-INSERT IGNORE INTO order_items (order_id, product_id, quantity, price) VALUES
+INSERT INTO order_items (order_id, product_id, quantity, price) VALUES
 (1, 1, 1, 35000000.00),
 (2, 2, 1, 2200000.00),
 (2, 3, 1, 2500000.00),
