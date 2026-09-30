@@ -1,5 +1,6 @@
 // 1. Switch to the shop_db database
-use shop_db;
+// (In interactive Mongo Shell: use shop_db)
+db = db.getSiblingDB("shop_db");
 
 // 2. Insert 2 order documents into the orders collection (insertOne / insertMany)
 db.orders.insertMany([
@@ -30,7 +31,8 @@ db.orders.insertMany([
 
 // 3. Query documents (Find)
 // Find orders with status 'completed'
-db.orders.find({ status: "completed" });
+console.log("=== Basic Requirement: Find completed orders ===");
+console.log(db.orders.find({ status: "completed" }).toArray());
 
 // 4. Update an order's status (Update)
 db.orders.updateOne(
@@ -62,8 +64,11 @@ db.orders.insertMany([
 ]);
 
 // 2. Q2 (Conditional & nested-document queries)
-db.orders.find({ total_amount: { $gte: 5000000 }, status: 'completed' });
-db.orders.find({ "items.product_name": "Logitech MX Master 3S Mouse" });
+console.log("=== Extended Q2: Orders >= 5,000,000 and completed ===");
+console.log(db.orders.find({ total_amount: { $gte: 5000000 }, status: "completed" }).toArray());
+
+console.log("=== Extended Q2: Orders with Logitech MX Master 3S Mouse ===");
+console.log(db.orders.find({ "items.product_name": "Logitech MX Master 3S Mouse" }).toArray());
 
 // 3. Q3 (Array update)
 db.orders.updateOne(
@@ -73,13 +78,17 @@ db.orders.updateOne(
     $inc: { total_amount: 200000 }
   }
 );
+console.log("=== Extended Q3: Updated ORD-2026-002 ===");
+console.log(db.orders.findOne({ order_code: "ORD-2026-002" }));
 
 // 4. Q4 (Aggregation Framework statistics)
-db.orders.aggregate([
-  { $match: { status: 'completed' } },
+console.log("=== Extended Q4: Total revenue from completed orders ===");
+console.log(db.orders.aggregate([
+  { $match: { status: "completed" } },
   { $group: { _id: null, totalRevenue: { $sum: "$total_amount" } } }
-]);
+]).toArray());
 
-db.orders.aggregate([
+console.log("=== Extended Q4: Orders count grouped by status ===");
+console.log(db.orders.aggregate([
   { $group: { _id: "$status", count: { $sum: 1 } } }
-]);
+]).toArray());
