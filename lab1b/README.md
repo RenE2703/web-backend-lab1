@@ -1,6 +1,6 @@
-# Lab 1B - In-class Exercise 2 (Q1-Q4)
+# Lab 1B - In-class Exercise 2 Q1-Q4 and Exercise 3 Q1-Q5
 
-This folder contains only the MySQL `mysql2` exercise and Questions 1-4. The script creates the `categories` and `items` tables if needed, then inserts sample categories and items only when their names are missing. It preserves existing rows and uses prepared statements for data changes and keyword search. It follows the PDF's sample data and adds one `Gaming Keyboard` row so both requested Q2 keywords have a match.
+This folder contains MySQL Exercise 2 Q1-Q4 and Mongoose Exercise 3 Q1-Q5. The MySQL script creates the `categories` and `items` tables if needed, then inserts sample categories and items only when their names are missing. It preserves existing rows and uses prepared statements for data changes and keyword search. It follows the PDF's sample data and adds one `Gaming Keyboard` row so both requested Q2 keywords have a match.
 
 ## Run
 
@@ -20,3 +20,9 @@ Running `npm start` again does not duplicate sample rows or overwrite existing p
 - **Q4 - Category statistics:** Joining `items` to `categories` lets each item contribute to its category's item count and inventory value. `GROUP BY` makes one result per category, and `HAVING` retains only categories whose `SUM(price * quantity)` exceeds 10,000,000 VND.
 
 The source code, terminal output, and `queries.sql` results can be captured as the screenshots requested in the lab sheet when MySQL is running locally.
+
+## Exercise 3 with Mongoose
+
+Set `MONGO_URI` in `.env` (local default `mongodb://127.0.0.1:27017/shop_mongoose_db`), start MongoDB and run `npm run mongoose`. The program demonstrates basic create/read/update operations and Q1-Q5: Vietnamese phone validation, `displayInfo` in JSON, active users by role sorted A-Z, `softDelete()` and save/find hooks. Q4 demonstrates delete through soft deletion.
+
+Four named sample emails are reused on each run; the whole collection is never cleared. The phone error is expected and verified not to insert a row. The script checks that a soft-deleted record remains in the raw collection but is hidden from `find`, `findOne` and `findById`. The SHA-256 password transformation illustrates middleware only; it is not a production password storage scheme. Ordinary saves do not hash an unchanged password again.
