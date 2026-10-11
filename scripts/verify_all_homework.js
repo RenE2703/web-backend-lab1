@@ -1,5 +1,5 @@
 // ==============================================================================
-// LAB 1 & LAB 2 HOMEWORK - ONE-CLICK AUTOMATED TEST & VERIFICATION SUITE
+// LAB 1 & LAB 1B HOMEWORK - ONE-CLICK AUTOMATED TEST & VERIFICATION SUITE
 // Student: Đỗ Anh Tuấn (MSSV: 25560063) - Class: BCU
 // ==============================================================================
 
@@ -33,7 +33,7 @@ async function recordResult(name, fn) {
 
 async function runAllTests() {
   console.log(`\n${CYAN}${BOLD}======================================================================${RESET}`);
-  console.log(`${CYAN}${BOLD}   WEB BACKEND LAB 1 & LAB 2 - AUTOMATED VERIFICATION SUITE           ${RESET}`);
+  console.log(`${CYAN}${BOLD}   WEB BACKEND LAB 1 & LAB 1B - AUTOMATED VERIFICATION SUITE          ${RESET}`);
   console.log(`${CYAN}${BOLD}   Student: Đỗ Anh Tuấn (25560063) | Class: BCU                       ${RESET}`);
   console.log(`${CYAN}${BOLD}======================================================================${RESET}\n`);
 
@@ -137,9 +137,9 @@ async function runAllTests() {
   });
 
   // -------------------------------------------------------------
-  // SUITE 4: Lab 2 HW 1 - SQL Order Transaction Integrity (ACID)
+  // SUITE 4: Lab 1b HW 1 - SQL Order Transaction Integrity (ACID)
   // -------------------------------------------------------------
-  await recordResult('Lab 2 HW 1: SQL Order Transaction Integrity (ACID Commit & Rollback)', async () => {
+  await recordResult('Lab 1b HW 1: SQL Order Transaction Integrity (ACID Commit & Rollback)', async () => {
     const [orders] = await mysqlConn.query('SELECT * FROM store_transaction_db.orders WHERE id = 1');
     assert.strictEqual(orders.length, 1, 'Committed order ID 1 must exist');
     assert.strictEqual(Number(orders[0].total_amount), 40000000, 'Order total must be 40M VND');
@@ -156,9 +156,9 @@ async function runAllTests() {
   });
 
   // -------------------------------------------------------------
-  // SUITE 5: Lab 2 HW 2 - Mongoose Many-to-Many Registration
+  // SUITE 5: Lab 1b HW 2 - Mongoose Many-to-Many Registration
   // -------------------------------------------------------------
-  await recordResult('Lab 2 HW 2: Mongoose Many-to-Many Course Registration', async () => {
+  await recordResult('Lab 1b HW 2: Mongoose Many-to-Many Course Registration', async () => {
     const courseDb = mongoose.connection.useDb('shop_mongoose_db');
     const coursesCol = courseDb.collection('courses');
     const studentsCol = courseDb.collection('students');
@@ -176,9 +176,9 @@ async function runAllTests() {
   });
 
   // -------------------------------------------------------------
-  // SUITE 6: Lab 2 HW 3 - Invoices JSON Sync & Validation
+  // SUITE 6: Lab 1b HW 3 - Invoices JSON Sync & Validation
   // -------------------------------------------------------------
-  await recordResult('Lab 2 HW 3: Invoices JSON Sync & Strict Schema Validation', async () => {
+  await recordResult('Lab 1b HW 3: Invoices JSON Sync & Strict Schema Validation', async () => {
     const invoiceDb = mongoose.connection.useDb('shop_mongoose_db');
     const invoicesCol = invoiceDb.collection('invoices');
 
