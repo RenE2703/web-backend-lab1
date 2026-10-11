@@ -1,0 +1,95 @@
+{
+  "info": {
+    "name": "Web Backend & Database - Lab 1 & Lab 2 API Collection",
+    "description": "API Test Collection for Student Đỗ Anh Tuấn (25560063) - Class BCU",
+    "_postman_id": "95ae1180-fc63-43bf-bd6a-eadbde784805",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Cloud Production (Render.com)",
+      "item": [
+        {
+          "name": "GET /api/greeting (Production)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://web-backend-lab1-25560063.onrender.com/api/greeting",
+              "protocol": "https",
+              "host": ["web-backend-lab1-25560063", "onrender", "com"],
+              "path": ["api", "greeting"]
+            },
+            "description": "Live production endpoint returning student profile and deployment metadata."
+          },
+          "response": []
+        },
+        {
+          "name": "GET /api/health (Production)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://web-backend-lab1-25560063.onrender.com/api/health",
+              "protocol": "https",
+              "host": ["web-backend-lab1-25560063", "onrender", "com"],
+              "path": ["api", "health"]
+            },
+            "description": "Production health check endpoint."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Local Development Server (Port 5000)",
+      "item": [
+        {
+          "name": "GET / (Home)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": [""]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET /api/greeting",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/api/greeting",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["api", "greeting"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET /api/health",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/api/health",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["api", "health"]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
